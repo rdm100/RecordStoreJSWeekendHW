@@ -10,6 +10,7 @@ let record1;
     beforeEach(function(){
       recordStore = new RecordStore ("Recorordia", "Glasgow");
       record1 = new Record ("Prince", "New power generation", "Funk", 10.00)
+      record2 = new Record ("Rihanna", "Loud", "Pop", 10.00)
 });
 
 
@@ -78,6 +79,14 @@ let record1;
       assert.strictEqual(recordStore.balance, 10.00)
       assert.strictEqual(recordStore.overallAssetValue(), "Overall asset value £30");
     });
+
+    it('Can view all Records of a given Genre', function(){
+      recordStore.addRecord(record1);
+      recordStore.addRecord(record2);
+      assert.deepStrictEqual(recordStore.viewRecordsOfGenre("Funk"), [record1]);
+    });
+
+
 
 });
 

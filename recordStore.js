@@ -61,6 +61,16 @@ RecordStore.prototype.overallAssetValue = function () {
 	return "Overall asset value £" + result;
 };
 
+RecordStore.prototype.viewRecordsOfGenre = function (genre) {
+	let result = [];
+	this.inventory.forEach(function(element){
+		if(element.genre === genre){
+			result.push(element);
+		}
+	});
+	return result
+};
+
 module.exports = RecordStore;
 
 
