@@ -38,7 +38,7 @@ RecordCollecter.prototype.sellsRecordToRecordStore = function (record, recordSto
 	  recordStore.buysRecord(record);
 };
 
-RecordCollecter.prototype.sellsRecordToRecordStore = function (record) {
+RecordCollecter.prototype.sellsRecordToAnyoneElse = function (record) {
 	  this.makeMoney(record);
 	  this.removeRecordFromCollection(record);
 };

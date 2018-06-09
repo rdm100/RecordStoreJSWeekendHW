@@ -72,6 +72,16 @@ let record2;
       assert.deepStrictEqual(recordCollector1.collection, [record2, record3]);
     });
 
+    it('RecordCollector can sell record2 to anyone else', function(){
+      recordStore.addRecord(record2);
+	  recordCollector1.buysRecord(record2, recordStore);
+	  recordCollector1.sellsRecordToAnyoneElse(record2);
+	  assert.deepStrictEqual(recordCollector1.money, 20);
+      assert.deepStrictEqual(recordCollector1.collection, []);
+    });
+
+    
+
 });
 
 
