@@ -52,7 +52,7 @@ let record1;
       assert.strictEqual(recordStore.listInventory().length, 0);
     });
 
-     it('Can list the inventory after sale', function(){
+     it('Can list the balance and inventory value after sale', function(){
       recordStore.addRecord(record1);
       recordStore.addRecord(record1);
       recordStore.sell(record1);
@@ -60,6 +60,24 @@ let record1;
       assert.strictEqual(recordStore.finances(), "The balance is £10. The inventory value is £10");
     });
 
+     it('Can get inventory value after sale', function(){
+      recordStore.addRecord(record1);
+      recordStore.addRecord(record1);
+      recordStore.sell(record1);
+      recordStore.remove(record1);
+      assert.strictEqual(recordStore.calcInventoryValue(), 10);
+    });
+
+
+    it('Can get Overall assets value', function(){
+      recordStore.addRecord(record1);
+      recordStore.addRecord(record1);
+      recordStore.addRecord(record1);
+      recordStore.sell(record1);
+      recordStore.remove(record1);
+      assert.strictEqual(recordStore.balance, 10.00)
+      assert.strictEqual(recordStore.overallAssetValue(), "Overall asset value £30");
+    });
 
 });
 

@@ -14,7 +14,7 @@ RecordStore.prototype.count = function () {
 };
 
 RecordStore.prototype.listInventory = function () {
-	result = [];
+	let result = [];
 	this.inventory.forEach(function(element){
 		 result.push(element.printRecordProperties())
 	});
@@ -41,13 +41,25 @@ RecordStore.prototype.sell = function (record) {
 };
 
 RecordStore.prototype.finances = function () {
+	// let inventoryValue = 0;
+	// this.inventory.forEach(function(element){
+	// 	 inventoryValue += element.price;
+	// });
+	return "The balance is £" + this.balance + ". The inventory value is £" + this.calcInventoryValue();
+};
+
+RecordStore.prototype.calcInventoryValue = function () {
 	let inventoryValue = 0;
 	this.inventory.forEach(function(element){
 		 inventoryValue += element.price;
 	});
-	return "The balance is £" + this.balance + ". The inventory value is £" + inventoryValue;
+	return inventoryValue;
 };
 
+RecordStore.prototype.overallAssetValue = function () {
+	let result = this.balance + this.calcInventoryValue();
+	return "Overall asset value £" + result;
+};
 
 module.exports = RecordStore;
 
