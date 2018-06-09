@@ -80,7 +80,51 @@ let record2;
       assert.deepStrictEqual(recordCollector1.collection, []);
     });
 
-    
+    it('RecordCollector can view the total value of their collection', function(){
+	  recordCollector1.addRecordToCollection(record2);
+	  recordCollector1.addRecordToCollection(record3);
+      assert.strictEqual(recordCollector1.totalValueOfCollection(), "The total value of collection is £31");
+    });
+
+    it('RecordCollector can view the total value of Pop genre collection', function(){
+	  recordCollector1.addRecordToCollection(record2);
+	  recordCollector1.addRecordToCollection(record3);
+      assert.strictEqual(recordCollector1.totalValueOfCollectionByGenre("Pop"), "The total value of collection by genre is £31");
+    });
+
+   //  it('RecordCollector can view their most valuable record', function(){
+	  // recordCollector1.addRecordToCollection(record2);
+	  // recordCollector1.addRecordToCollection(record3);
+   //    assert.strictEqual(recordCollector1.totalValueOfCollectionByGenre("Pop"), "The total value of collection by genre is £31");
+   //  });
+
+    it('RecordCollector can sort collection descending price', function(){
+	  recordCollector1.addRecordToCollection(record2);
+	  recordCollector1.addRecordToCollection(record3);
+      assert.deepStrictEqual(recordCollector1.sortRecordsByDescendingPrice(), [record3, record2]);
+    });
+
+    it('RecordCollector record in collection with highest price', function(){
+	  recordCollector1.addRecordToCollection(record2);
+	  recordCollector1.addRecordToCollection(record3);
+      assert.deepStrictEqual(recordCollector1.recordWithMaxPrice(), record3);
+    });
+
+      it('RecordCollector can sort collection Ascending price', function(){
+      recordCollector1.addRecordToCollection(record3);
+	  recordCollector1.addRecordToCollection(record2);
+      assert.deepStrictEqual(recordCollector1.sortRecordsByAscendingPrice(), [record2, record3]);
+    });
+
+      it('RecordCollector can compare collection to another collectors', function(){
+      recordCollector2 = new RecordCollector("Paul", 30.00)
+      recordCollector1.addRecordToCollection(record3);
+	  recordCollector1.addRecordToCollection(record2);
+	  recordCollector2.addRecordToCollection(record3);
+	  recordCollector2.addRecordToCollection(record3);
+      assert.deepStrictEqual(recordCollector1.compareValueOfCollections(recordCollector1, recordCollector2), "Paul has the most valuable collection The total value of collection is £42");
+    });
+
 
 });
 
