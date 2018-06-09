@@ -28,7 +28,7 @@ RecordStore.prototype.remove = function (record) {
     }
 }
 
-RecordStore.prototype.sell = function (record) {
+RecordStore.prototype.addSellPriceToBalance = function (record) {
 	this.balance += record.price;
 	// this.inventory = this.inventory.filter(item => item !== record)
 	 
@@ -38,6 +38,20 @@ RecordStore.prototype.sell = function (record) {
  //  	 };
 
 	// });
+};
+
+RecordStore.prototype.decreaseBalanceByRecordPrice = function (record) {
+	this.balance -= record.price;
+};
+
+RecordStore.prototype.sell = function (record) {
+	this.addSellPriceToBalance(record);
+	this.remove(record);
+};
+
+RecordStore.prototype.buysRecord = function (record) {
+	this.decreaseBalanceByRecordPrice(record);
+	this.addRecord(record);
 };
 
 RecordStore.prototype.finances = function () {
