@@ -92,12 +92,6 @@ let record2;
       assert.strictEqual(recordCollector1.totalValueOfCollectionByGenre("Pop"), "The total value of collection by genre is £31");
     });
 
-   //  it('RecordCollector can view their most valuable record', function(){
-	  // recordCollector1.addRecordToCollection(record2);
-	  // recordCollector1.addRecordToCollection(record3);
-   //    assert.strictEqual(recordCollector1.totalValueOfCollectionByGenre("Pop"), "The total value of collection by genre is £31");
-   //  });
-
     it('RecordCollector can sort collection descending price', function(){
 	  recordCollector1.addRecordToCollection(record2);
 	  recordCollector1.addRecordToCollection(record3);

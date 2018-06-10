@@ -1,3 +1,5 @@
+const _ = require('lodash');
+
 const RecordCollector = function(name, money){
   this.name = name;
   this.money = money;
@@ -30,6 +32,7 @@ RecordCollector.prototype.removeRecordFromCollection = function (record) {
     if (index !== -1) {
         this.collection.splice(index, 1);
     }
+    // _.remove(this.collection, record);
 }
 
 RecordCollector.prototype.sellsRecordToRecordStore = function (record, recordStore) {
@@ -44,21 +47,25 @@ RecordCollector.prototype.sellsRecordToAnyoneElse = function (record) {
 };
 
 RecordCollector.prototype.totalValueOfCollection = function () {
-	  let total = 0;
-	  this.collection.forEach(function(element){
-	  	total += element.price;
-	 });
-	  return "The total value of collection is £" + total;
+	 //  let total = 0;
+	 //  this.collection.forEach(function(element){
+	 //  	total += element.price;
+	 // });
+	  // return "The total value of collection is £" + total;
+	  return "The total value of collection is £" + _.sumBy(this.collection, 'price');
 }
 
 RecordCollector.prototype.totalValueOfCollectionByGenre = function (genre) {
-	  let total = 0;
-	  this.collection.forEach(function(element){
-	  	if(element.genre === genre){
-	  	total += element.price;
-	  	}
-	 });
-	  return "The total value of collection by genre is £" + total;
+	 //  let total = 0;
+	 //  this.collection.forEach(function(element){
+	 //  	if(element.genre === genre){
+	 //  	total += element.price;
+	 //  	}
+	 // });
+	 //  	return "The total value of collection by genre is £" + total;
+
+	    let filteredRecordsInCollection = _.filter(this.collection, 'genre');
+		return "The total value of collection by genre is £" + _.sumBy(filteredRecordsInCollection, 'price');
 }
 
  RecordCollector.prototype.sortRecordsByDescendingPrice = function(){
@@ -74,7 +81,8 @@ RecordCollector.prototype.totalValueOfCollectionByGenre = function (genre) {
 }
 
  RecordCollector.prototype.recordWithMaxPrice = function(){
-    return this.sortRecordsByDescendingPrice()[0];
+    // return this.sortRecordsByDescendingPrice()[0];
+    return _.maxBy(this.collection, 'price');
 }
 
 
